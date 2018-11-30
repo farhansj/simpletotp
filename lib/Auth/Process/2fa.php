@@ -15,6 +15,9 @@
  *    'secret_attr' => 'totp_secret', //default
  *    'enforce_2fa' => false, //default
  *    'not_configured_url' => NULL,  //default
+ *    'db.dsn' => 'mysql:host=db.example.com;port=3306;dbname=2fatest',
+ *    'db.username' => 'simplesaml',
+ *    'db.password' => 'bigsecret',
  *  ),
  * </code>
  *
@@ -45,6 +48,16 @@ class sspmod_simpletotp_Auth_Process_2fa extends SimpleSAML_Auth_ProcessingFilte
      *  be redirect to the internal error page.
      */
     private $not_configured_url = NULL;
+    
+    /**
+      * Database Settings
+      *
+      */
+    
+    private $db_dsn;
+    private $db_username;
+    private $db_password;
+    private $dbh;
 
     /**
      * Initialize the filter.
